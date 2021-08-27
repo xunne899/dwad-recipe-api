@@ -11,5 +11,5 @@ Make sure to create your own .env file and provide the connection string to your
 Example below:
 
 ```
-MONGO_URL=<your mongo connection string>
+MONGO_URI=<your mongo connection string>
 ```
