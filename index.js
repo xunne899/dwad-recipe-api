@@ -12,7 +12,7 @@ app.use(cors());
 
 // connect to the Mongo DB
 async function connect() {
-    const mongo_url = process.env.MONGO_URL;
+    const mongo_url = process.env.MONGO_URI;
     let client = await MongoClient.connect(mongo_url, {
         "useUnifiedTopology": true
     })
