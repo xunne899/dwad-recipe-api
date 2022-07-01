@@ -44,7 +44,7 @@ async function main() {
             title: req.body.title,
             ingredients: req.body.ingredients
         })
-        res.json(results.ops);
+        res.json(results);
     })
 
     app.patch('/recipes/:id', async (req, res) => {
