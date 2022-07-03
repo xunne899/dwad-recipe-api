@@ -32,9 +32,17 @@ async function main() {
         res.json(recipes)
     })
 
+    // app.post('/recipes', async (req, res) => {
+    //     let recipes = await db.collection('recipes').find().toArray();
+    //     res.json(recipes)
+    // })
+
     app.post('/recipes', async (req, res) => {
-        let recipes = await db.collection('recipes').find().toArray();
-        res.json(recipes)
+        let results = await db.collection('recipes').insertOne({
+            title: req.body.title,
+            ingredients: req.body.ingredients
+        })
+        res.json(results);
     })
 
     app.get('/recipes/:recipeId', async (req, res) => {
@@ -44,13 +52,7 @@ async function main() {
         res.json(r);
     })
 
-    // app.post('/recipes', async (req, res) => {
-    //     let results = await db.collection('recipes').insertOne({
-    //         title: req.body.title,
-    //         ingredients: req.body.ingredients
-    //     })
-    //     res.json(results);
-    // })
+
 
     app.patch('/recipes/:id', async (req, res) => {
         let results = await db.collection('recipes').updateOne({
