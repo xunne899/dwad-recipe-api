@@ -32,18 +32,9 @@ async function main() {
         res.json(recipes)
     })
 
-
-    // app.post('/recipes', async (req, res) => {
-    //     let recipes = await db.collection('recipes').find().toArray();
-    //     res.json(recipes)
-    // })
-
     app.post('/recipes', async (req, res) => {
-        let results = await db.collection('recipes').insertOne({
-            title: req.body.title,
-            ingredients: req.body.ingredients
-        })
-        res.json(results);
+        let recipes = await db.collection('recipes').find().toArray();
+        res.json(recipes)
     })
 
     app.get('/recipes/:recipeId', async (req, res) => {
@@ -52,20 +43,28 @@ async function main() {
         });
         res.json(r);
     })
-   
-    // app.patch('/recipes/:id', async (req, res) => {
-    //     let results = await db.collection('recipes').updateOne({
-    //         '_id': new ObjectId(req.params.id),
-    //     }, {
-    //         '$set': {
-    //             'title': req.body.title,
-    //             'ingredients': req.body.ingredients
-    //         }
+
+    // app.post('/recipes', async (req, res) => {
+    //     let results = await db.collection('recipes').insertOne({
+    //         title: req.body.title,
+    //         ingredients: req.body.ingredients
     //     })
-    //     res.json({
-    //         'status': true
-    //     })
+    //     res.json(results);
     // })
+
+    app.patch('/recipes/:id', async (req, res) => {
+        let results = await db.collection('recipes').updateOne({
+            '_id': new ObjectId(req.params.id),
+        }, {
+            '$set': {
+                'title': req.body.title,
+                'ingredients': req.body.ingredients
+            }
+        })
+        res.json({
+            'status': true
+        })
+    })
 }
 
 
