@@ -32,6 +32,12 @@ async function main() {
         res.json(recipes)
     })
 
+
+    // app.post('/recipes', async (req, res) => {
+    //     let recipes = await db.collection('recipes').find().toArray();
+    //     res.json(recipes)
+    // })
+
     app.post('/recipes', async (req, res) => {
         let results = await db.collection('recipes').insertOne({
             title: req.body.title,
